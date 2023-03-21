@@ -2,10 +2,9 @@ import requests
 import domesday
 
 def main():
-    res = requests.get('https://opendomesday.org/api/1.0/county/dby')
-    county = res.json()
-    manors = domesday.get_manor_ids(county['places_in_county'][0]['id'])
-    print(manors)
+    df = domesday.get_manors_info('dby')
+    print(df['geld'].sum())
+    print(df['totalploughs'].sum())
 
 if __name__ == "__main__":
     main()

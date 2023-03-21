@@ -20,23 +20,26 @@
 2. `nano script.py`
 ```python
 import requests
+import domesday
 
-def  main():
-res = requests.get('https://opendomesday.org/api/1.0/county/dby')
-places = res.json()
-print(places)
+def main():
+    res = requests.get('https://opendomesday.org/api/1.0/county/dby')
+    county = res.json()
+    manors = domesday.get_manor_ids(county['places_in_county'][0]['id'])
+    print(manors)
 
-if  __name__  ==  "__main__":
-	main()
+if __name__ == "__main__":
+    main()
 ```
 3. `git add script.py`, `git commit -m "Added script.py"`
 
-## Exercise 3: Python module
+## Exercise 3: Python Module
 
-1. `nano domesday`
+1. `nano domesday.py`
 ```python
 import requests
-def  get_manor_ids(placeId):
+
+def get_manor_ids(placeId):
 	res = requests.get('https://opendomesday.org/api/1.0/place/'+placeId)
 	data = res.json()
 	if  'manors'  in data.keys():
@@ -44,3 +47,9 @@ def  get_manor_ids(placeId):
 	else:
 		return []
 ```
+2. `.env/bin/python3 domesday.py`
+3. `.env/bin/python3`, `import domesday`, `domesday.get_manor_ids(1036)`, `exit()`
+
+## Exercise 4: Python Program
+
+Files are in Github
