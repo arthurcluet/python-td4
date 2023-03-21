@@ -20,7 +20,6 @@
 2. `nano script.py`
 ```python
 import requests
-import domesday
 
 def main():
     res = requests.get('https://opendomesday.org/api/1.0/county/dby')
